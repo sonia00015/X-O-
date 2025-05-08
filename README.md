@@ -25,6 +25,14 @@ Gra w **Kółko i Krzyżyk (Tic Tac Toe)** to klasyczna gra dla dwóch graczy, w
 ```javascript
 let currentPlayer = "X";
 
+## Jakie są tutaj zmienne globalne?
 
+- board – Element HTML, w którym jest plansza.
+- messageTur – Element HTML, w którym wyświetla się informacja o turze lub wyniku.
+- resetBtn – Przycisk do resetowania gry.
+- currentPlayer – Zmienna, która mówi, czy teraz gra X czy O.
+- gameBoard – Tablica, która przechowuje aktualny stan planszy.
+- winningCombo – Tablica, która przechowuje zwycięską kombinację pól.
+- gameOver – Zmienna, która mówi, czy gra się skończyła.
 
 
