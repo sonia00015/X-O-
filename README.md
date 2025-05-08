@@ -1,22 +1,31 @@
-# X-O-
---------------------------
-for (let i = 0; i < 9; i++) {
-    const cell = document.createElement("div"); // Tworzy nowe pole planszy (div)
-    cell.classList.add("cell");                // Dodaje klasę CSS do pola
-    cell.dataset.index = i;                    // Ustawia numer pola (0–8)
-    cell.addEventListener("click", handleCellClick); // Dodaje reakcję na kliknięcie
-    board.appendChild(cell);                   // Dodaje pole do planszy
-}
-------------------------
-        gameOver = true;//Ustawia, że gra się zakończyła – nie można już dalej grać.//
-----------------------------
- messageTur.textContent = "Remis!";//Pokazuje komunikat o remisie.//
- ----------------------------
-  } else {
-        currentPlayer = currentPlayer === "X" ? "O" : "X"//Jeśli gra trwa dalej – zmienia gracza z X na O lub odwrotnie.//
-        ------------------------------------------------
-          messageTur.textContent = `Tura: ${currentPlayer}`;
+const index = parseInt(event.target.dataset.index);
+if (gameBoard[index] !== "") return;  // Jeśli pole jest już zajęte, nie wykonuj ruchu
+event.target.textContent = currentPlayer;    
+gameBoard[index] = currentPlayer;
+############
+const winConditions = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], // poziome linie
+    [0, 3, 6], [1, 4, 7], [2, 5, 8], // pionowe linie
+    [0, 4, 8], [2, 4, 6],            // przekątne
+];
+
+for (const condition of winConditions) {
+    const [a, b, c] = condition;
+    if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
+        winningCombo = condition;  // Zapisanie wygrywającej kombinacji
+        return true;  // Zwrócenie true, jeśli warunki wygranej są spełnione
     }
 }
-//Pokazuje komunikat, czyja jest teraz tura.//
+##############
+const line = document.createElement("div");
+line.classList.add("line");
+board.appendChild(line);
 
+const [start, , end] = winningCombo;
+
+if (start === 0 && end === 2) {
+    line.style.width = "310px";
+    line.style.top = "50px";
+    line.style.left = "0";
+} // Rysowanie linii dla poziomej wygranej
+#########################
